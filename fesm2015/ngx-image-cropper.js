@@ -303,6 +303,8 @@ class ImageCropperComponent {
         this.resizeToHeight = 0;
         this.cropperMinWidth = 0;
         this.cropperMinHeight = 0;
+        this.cropperStaticWidth = 0;
+        this.cropperStaticHeight = 0;
         this.canvasRotation = 0;
         this.initialStepSize = 3;
         this.roundCropper = false;
@@ -331,6 +333,12 @@ class ImageCropperComponent {
      * @return {?}
      */
     ngOnChanges(changes) {
+        if (this.cropperStaticHeight && this.cropperStaticWidth) {
+            this.hideResizeSquares = true;
+            this.cropperMinWidth = this.cropperStaticWidth;
+            this.cropperMinHeight = this.cropperStaticHeight;
+            this.maintainAspectRatio = false;
+        }
         this.onChangesInputImage(changes);
         if (this.originalImage && this.originalImage.complete && this.exifTransform
             && (changes.containWithinAspectRatio || changes.canvasRotation)) {
@@ -747,27 +755,37 @@ class ImageCropperComponent {
     resetCropperPosition() {
         /** @type {?} */
         const sourceImageElement = this.sourceImage.nativeElement;
-        if (!this.maintainAspectRatio) {
+        if (this.cropperStaticHeight && this.cropperStaticWidth) {
             this.cropper.x1 = 0;
-            this.cropper.x2 = sourceImageElement.offsetWidth;
+            this.cropper.x2 = sourceImageElement.offsetWidth > this.cropperStaticWidth ?
+                this.cropperStaticWidth : sourceImageElement.offsetWidth;
             this.cropper.y1 = 0;
-            this.cropper.y2 = sourceImageElement.offsetHeight;
-        }
-        else if (sourceImageElement.offsetWidth / this.aspectRatio < sourceImageElement.offsetHeight) {
-            this.cropper.x1 = 0;
-            this.cropper.x2 = sourceImageElement.offsetWidth;
-            /** @type {?} */
-            const cropperHeight = sourceImageElement.offsetWidth / this.aspectRatio;
-            this.cropper.y1 = (sourceImageElement.offsetHeight - cropperHeight) / 2;
-            this.cropper.y2 = this.cropper.y1 + cropperHeight;
+            this.cropper.y2 = sourceImageElement.offsetHeight > this.cropperStaticHeight ?
+                this.cropperStaticHeight : sourceImageElement.offsetHeight;
         }
         else {
-            this.cropper.y1 = 0;
-            this.cropper.y2 = sourceImageElement.offsetHeight;
-            /** @type {?} */
-            const cropperWidth = sourceImageElement.offsetHeight * this.aspectRatio;
-            this.cropper.x1 = (sourceImageElement.offsetWidth - cropperWidth) / 2;
-            this.cropper.x2 = this.cropper.x1 + cropperWidth;
+            if (!this.maintainAspectRatio) {
+                this.cropper.x1 = 0;
+                this.cropper.x2 = sourceImageElement.offsetWidth;
+                this.cropper.y1 = 0;
+                this.cropper.y2 = sourceImageElement.offsetHeight;
+            }
+            else if (sourceImageElement.offsetWidth / this.aspectRatio < sourceImageElement.offsetHeight) {
+                this.cropper.x1 = 0;
+                this.cropper.x2 = sourceImageElement.offsetWidth;
+                /** @type {?} */
+                const cropperHeight = sourceImageElement.offsetWidth / this.aspectRatio;
+                this.cropper.y1 = (sourceImageElement.offsetHeight - cropperHeight) / 2;
+                this.cropper.y2 = this.cropper.y1 + cropperHeight;
+            }
+            else {
+                this.cropper.y1 = 0;
+                this.cropper.y2 = sourceImageElement.offsetHeight;
+                /** @type {?} */
+                const cropperWidth = sourceImageElement.offsetHeight * this.aspectRatio;
+                this.cropper.x1 = (sourceImageElement.offsetWidth - cropperWidth) / 2;
+                this.cropper.x2 = this.cropper.x1 + cropperWidth;
+            }
         }
         this.doAutoCrop();
         this.imageVisible = true;
@@ -914,7 +932,9 @@ class ImageCropperComponent {
                 this.checkCropperPosition(true);
             }
             else if (this.moveStart.type === MoveTypes.Resize) {
-                this.resize(event);
+                if (!this.cropperStaticWidth && !this.cropperStaticHeight) {
+                    this.resize(event);
+                }
                 this.checkCropperPosition(false);
             }
             this.cd.detectChanges();
@@ -1398,6 +1418,8 @@ ImageCropperComponent.propDecorators = {
     resizeToHeight: [{ type: Input }],
     cropperMinWidth: [{ type: Input }],
     cropperMinHeight: [{ type: Input }],
+    cropperStaticWidth: [{ type: Input }],
+    cropperStaticHeight: [{ type: Input }],
     canvasRotation: [{ type: Input }],
     initialStepSize: [{ type: Input }],
     roundCropper: [{ type: Input }],
@@ -1530,6 +1552,10 @@ if (false) {
     ImageCropperComponent.prototype.cropperMinWidth;
     /** @type {?} */
     ImageCropperComponent.prototype.cropperMinHeight;
+    /** @type {?} */
+    ImageCropperComponent.prototype.cropperStaticWidth;
+    /** @type {?} */
+    ImageCropperComponent.prototype.cropperStaticHeight;
     /** @type {?} */
     ImageCropperComponent.prototype.canvasRotation;
     /** @type {?} */

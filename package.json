@@ -1,27 +1,27 @@
 {
-  "_from": "ngx-image-cropper",
-  "_id": "ngx-image-cropper@3.1.9",
+  "_from": "ngx-image-cropper@^3.1.9",
+  "_id": "ngx-image-cropper@3.2.0",
   "_inBundle": false,
-  "_integrity": "sha512-z6q2ZLtuHOKPJk/fI61AahWDNAKdQFuaCTo1P8YgWY/V8rp+aeZTFC3DRM8QQzIJPjX6Fu+z7KdEn2riFHDYFA==",
+  "_integrity": "sha512-adEhWwmRDViRcKTjjQ46/3UuVAx+EblGsRjUOJUb4S0RsGcKp7U/02GYRqnQ6Tjah9i9/dba3PZt3p80c8mIGA==",
   "_location": "/ngx-image-cropper",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "ngx-image-cropper",
+    "raw": "ngx-image-cropper@^3.1.9",
     "name": "ngx-image-cropper",
     "escapedName": "ngx-image-cropper",
-    "rawSpec": "",
+    "rawSpec": "^3.1.9",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^3.1.9"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/ngx-image-cropper/-/ngx-image-cropper-3.1.9.tgz",
-  "_shasum": "0d63ee499fae9c39684b939305de94a9097809b6",
-  "_spec": "ngx-image-cropper",
+  "_resolved": "https://registry.npmjs.org/ngx-image-cropper/-/ngx-image-cropper-3.2.0.tgz",
+  "_shasum": "42dfdfe63c31e0bdb2faf4758e2c0f26c9589cb4",
+  "_spec": "ngx-image-cropper@^3.1.9",
   "_where": "/media/javauser/914fa200-2352-479a-be3f-039edc4d1f6a/home/javauser/angular projects/my-new-app",
   "author": {
     "name": "weblineindia"
@@ -33,11 +33,9 @@
   },
   "deprecated": false,
   "description": "AngularJS based reusable component for Image upload with cropping.",
-  "es2015_ivy_ngcc": "__ivy_ngcc__/fesm2015/ngx-image-cropper.js",
   "es2015": "fesm2015/ngx-image-cropper.js",
   "esm2015": "esm2015/ngx-image-cropper.js",
   "esm5": "esm5/ngx-image-cropper.js",
-  "fesm2015_ivy_ngcc": "__ivy_ngcc__/fesm2015/ngx-image-cropper.js",
   "fesm2015": "fesm2015/ngx-image-cropper.js",
   "fesm5": "fesm5/ngx-image-cropper.js",
   "homepage": "https://www.weblineindia.com/software-development-resources.html",
@@ -67,13 +65,5 @@
   },
   "sideEffects": false,
   "typings": "ngx-image-cropper.d.ts",
-  "version": "1.0.0",
-  "__processed_by_ivy_ngcc__": {
-    "es2015": "10.0.2",
-    "fesm2015": "10.0.2",
-    "typings": "10.0.2"
-  },
-  "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by NGCC. This is not allowed.\\nPlease delete and rebuild the package, without compiling with NGCC, before attempting to publish.\\nNote that NGCC may have been run by importing this package into another project that is being built with Ivy enabled.\\n')\" && exit 1"
-  }
+  "version": "1.0.0"
 }

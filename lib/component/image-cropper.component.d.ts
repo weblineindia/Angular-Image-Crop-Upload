@@ -2,7 +2,6 @@ import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnInit, SimpleC
 import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 import { CropperPosition, Dimensions, ImageCroppedEvent, ImageTransform } from '../interfaces';
 import { MoveTypes } from '../interfaces/move-start.interface';
-import * as ɵngcc0 from '@angular/core';
 export declare class ImageCropperComponent implements OnChanges, OnInit {
     private sanitizer;
     private cd;
@@ -40,6 +39,8 @@ export declare class ImageCropperComponent implements OnChanges, OnInit {
     resizeToHeight: number;
     cropperMinWidth: number;
     cropperMinHeight: number;
+    cropperStaticWidth: number;
+    cropperStaticHeight: number;
     canvasRotation: number;
     initialStepSize: number;
     roundCropper: boolean;
@@ -110,8 +111,4 @@ export declare class ImageCropperComponent implements OnChanges, OnInit {
     private getResizeRatio;
     private getClientX;
     private getClientY;
-    static ɵfac: ɵngcc0.ɵɵFactoryDef<ImageCropperComponent, never>;
-    static ɵcmp: ɵngcc0.ɵɵComponentDefWithMeta<ImageCropperComponent, "image-cropper", never, { "format": "format"; "maintainAspectRatio": "maintainAspectRatio"; "transform": "transform"; "aspectRatio": "aspectRatio"; "resizeToWidth": "resizeToWidth"; "resizeToHeight": "resizeToHeight"; "cropperMinWidth": "cropperMinWidth"; "cropperMinHeight": "cropperMinHeight"; "canvasRotation": "canvasRotation"; "initialStepSize": "initialStepSize"; "roundCropper": "roundCropper"; "onlyScaleDown": "onlyScaleDown"; "imageQuality": "imageQuality"; "autoCrop": "autoCrop"; "containWithinAspectRatio": "containWithinAspectRatio"; "hideResizeSquares": "hideResizeSquares"; "cropper": "cropper"; "alignImage": "alignImage"; "disabled": "disabled"; "imageChangedEvent": "imageChangedEvent"; "imageURL": "imageURL"; "imageBase64": "imageBase64"; "imageFile": "imageFile"; "backgroundColor": "backgroundColor"; }, { "imageCropped": "imageCropped"; "startCropImage": "startCropImage"; "imageLoaded": "imageLoaded"; "cropperReady": "cropperReady"; "loadImageFailed": "loadImageFailed"; }, never, never>;
 }
-
-//# sourceMappingURL=image-cropper.component.d.ts.map
